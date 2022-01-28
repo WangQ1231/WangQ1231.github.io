@@ -1,0 +1,339 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>项目问题总结(持续更新) | 技术随笔WQ</title><meta name="keywords" content="js,css"><meta name="author" content="AQIANG,1550791330@qq.com"><meta name="copyright" content="AQIANG"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在项目开发的过程中遇到的相关问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="项目问题总结(持续更新)">
+<meta property="og:url" content="https://wangq1231.gitee.io/2021/03/16/%E2%95%A7%D1%8E%E2%94%80%E2%94%90%E2%95%AC%E2%95%A9%E2%95%A0%D1%82%E2%95%AB%E2%96%84%E2%95%9C%D1%81-%E2%94%82%E2%95%93%E2%95%A8%C2%B0%E2%95%95%E2%84%96%E2%95%A8%E2%94%AC/index.html">
+<meta property="og:site_name" content="技术随笔WQ">
+<meta property="og:description" content="在项目开发的过程中遇到的相关问题">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/03/24/kiRT4FUGVJjP3lQ.jpg">
+<meta property="article:published_time" content="2021-03-16T02:44:05.000Z">
+<meta property="article:modified_time" content="2022-01-27T10:36:49.517Z">
+<meta property="article:author" content="AQIANG">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="css">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/03/24/kiRT4FUGVJjP3lQ.jpg"><link rel="shortcut icon" href="/wangq1231/img/favicon.jpg"><link rel="canonical" href="https://wangq1231.gitee.io/2021/03/16/%E2%95%A7%D1%8E%E2%94%80%E2%94%90%E2%95%AC%E2%95%A9%E2%95%A0%D1%82%E2%95%AB%E2%96%84%E2%95%9C%D1%81-%E2%94%82%E2%95%93%E2%95%A8%C2%B0%E2%95%95%E2%84%96%E2%95%A8%E2%94%AC/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/wangq1231/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/wangq1231/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-27 18:36:49'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><link rel="stylesheet" href="APlayer.min.css"><div id="aplayer"></div><script src="https://cdn.jsdelivr.net/gh/radium-bit/res@master/live2d/autoload.js" async></script><script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js" async></script><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"></link><link rel="stylesheet" href="//at.alicdn.com/t/font_2443718_x22y5l11sv.css"></link><meta name="generator" content="Hexo 5.4.1"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="/wangq1231/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/wangq1231/archives/"><div class="headline">文章</div><div class="length-num">22</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/wangq1231/tags/"><div class="headline">标签</div><div class="length-num">13</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/wangq1231/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/wangq1231/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/wangq1231/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/wangq1231/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/wangq1231/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/wangq1231/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 更多</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/wangq1231/photo/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li><li><a class="site-page" href="/wangq1231/music/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/wangq1231/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2021/03/24/kiRT4FUGVJjP3lQ.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/wangq1231/">技术随笔WQ</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/wangq1231/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/wangq1231/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/wangq1231/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/wangq1231/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/wangq1231/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 更多</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/wangq1231/photo/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li><li><a class="site-page" href="/wangq1231/music/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/wangq1231/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">项目问题总结(持续更新)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-03-16T02:44:05.000Z" title="发表于 2021-03-16 10:44:05">2021-03-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-01-27T10:36:49.517Z" title="更新于 2022-01-27 18:36:49">2022-01-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/wangq1231/categories/%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93/">工作总结</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><br>
+
+<h2 id="2021-03-16-更新"><a href="#2021-03-16-更新" class="headerlink" title="2021-03-16 更新"></a>2021-03-16 更新</h2><h3 id="1-旋转元素遇到的问题"><a href="#1-旋转元素遇到的问题" class="headerlink" title="1.旋转元素遇到的问题"></a>1.旋转元素遇到的问题</h3><p>想要某块元素实现旋转，通常情况下使用 css 的 transform 属性设置<code>rotate(角度deg)</code>即可。如下</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  // 使用<span class="attribute">transform</span>旋转</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">30deg</span>);</span><br><span class="line">  -ms-<span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">30deg</span>); <span class="comment">/* IE 9 */</span></span><br><span class="line">  -webkit-<span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">30deg</span>); <span class="comment">/* Safari and Chrome */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是很多情况下，我们使用了旋转后发现效果并不是期待的那样，也许就需要用到我接下来说的属性来解决。</p>
+<span id="more"></span>
+
+<p>rotate 旋转属性默认都是以自身元素的中心为圆心来旋转，如下图。如果我们希望它不是围绕自身元素的中心旋转，这时就需要 transform-origin 属性来修改旋转圆心（这里只介绍 transform-origin 两个参数 2d 平面的旋转用法。3 个参数的 3d 用法暂不考虑）<br><img src= "/wangq1231/img/loading.gif" data-lazy-src="https://img-blog.csdnimg.cn/2021031609450581.gif" alt="在这里插入图片描述"></p>
+<p>我们希望黄色区域旋转 90 度后与白色区域重叠，就需要对旋转中心进行设置。将圆心设在如下位置后就可以达到效果<br><img src= "/wangq1231/img/loading.gif" data-lazy-src="https://img-blog.csdnimg.cn/20210316094521551.gif" alt="在这里插入图片描述"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* transform-origin的使用语法 */</span></span><br><span class="line"><span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">90deg</span>)</span><br><span class="line">transform-origin: x-axis y-axis;</span><br><span class="line">-ms-<span class="attribute">transform-origin</span>: x-axis y-axis;</span><br><span class="line">-webkit-<span class="attribute">transform-origin</span>: x-axis y-axis;</span><br><span class="line">-moz-<span class="attribute">transform-origin</span>: x-axis y-axis;</span><br><span class="line">// 可取的值</span><br><span class="line">x-axis： <span class="attribute">left</span>、center、<span class="attribute">right</span>、length、%</span><br><span class="line">y-axis： <span class="attribute">top</span>、center、<span class="attribute">bottom</span>、length、%</span><br></pre></td></tr></table></figure>
+
+<p>以上面的实例来说，只需要设置黄色区域的样式内容如下即可达到想要的结果</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> &#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">90deg</span>);</span><br><span class="line">  -ms-<span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">90deg</span>);</span><br><span class="line">  -webkit-<span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">90deg</span>);</span><br><span class="line">  <span class="attribute">transform-origin</span>: 外部div宽度的一半 <span class="number">50%</span>;</span><br><span class="line">  -ms-<span class="attribute">transform-origin</span>: 外部div宽度的一半 <span class="number">50%</span>;</span><br><span class="line">  -webkit-<span class="attribute">transform-origin</span>: 外部div宽度的一半 <span class="number">50%</span>;</span><br><span class="line">  -moz-<span class="attribute">transform-origin</span>: 外部div宽度的一半 <span class="number">50%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<h3 id="2-移动端设备横竖屏切换时字体大小的问题"><a href="#2-移动端设备横竖屏切换时字体大小的问题" class="headerlink" title="2.移动端设备横竖屏切换时字体大小的问题"></a>2.移动端设备横竖屏切换时字体大小的问题</h3><p>做移动端的项目时，发横竖屏切换浏览器会默认改变 html 元素的 font-size 属性，导致横屏时的字体会比竖屏时的字体看起来更大。</p>
+<p>仔细对比发现，<strong>在横屏时字体的大小和竖屏时字体的大小比例等于移动设备的屏幕高度比上宽度。简言之，如果移动设备的高度是宽度的两倍，那么横屏时的字体就会是竖屏时的字体的两倍大小。</strong> 这样的用户体验相对较差，于是便想要解决这个问题。</p>
+<p>在网上搜了解决方案。大多看到的都是说给 body 添加如下样式:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  -webkit-text-size-adjust: none;</span><br><span class="line">  -moz-text-size-adjust: none;</span><br><span class="line">  -ms-text-size-adjust: none;</span><br><span class="line">  text-size-adjust: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 MDN 官网查找了该 text-size-adjust 属性，官网介绍为：<img src= "/wangq1231/img/loading.gif" data-lazy-src="https://img-blog.csdnimg.cn/20210316101926446.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5MzUyNjUw,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>我在当前项目尝试该解决办法后发现并不能生效，横屏时的字体还是会比竖屏时字体更大。</p>
+<p>于是我想或许可以给 html 元素添加一个固定大小的 font-size 值，让它横屏时也和竖屏一样大小。但我设置后发现，在代码里写的是 <code>font-size: 37.5px</code> 但是到浏览器打开后会变成 <code>font-size: 1rem</code> 并且字体看起来比竖屏时还要小。</p>
+<p>为了弄清楚 rem 和 px 的区别。看了网上的介绍后，大致总结为如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>px是绝对单位，代表像素。</span><br><span class="line"><span class="number">2.</span>rem是相对单位，相对的是根元素的大小。也就是html元素的大小</span><br><span class="line"><span class="number">3.</span>默认情况下html的字体大小 1rem = 16px</span><br><span class="line">更多的内容可以查看 (http:<span class="comment">//caibaojian.com/rem-and-px.html)</span></span><br></pre></td></tr></table></figure>
+
+<p>设置固定 px 是行不通了。但是我们从以上知道，横屏时默认转换为 1rem 代表的是 16px。竖屏时是 37.5px。那么只需要设置横屏时 html 的 font-size 为 <code>37.5/16 = 2.34 rem</code> 即可。</p>
+<h4 id="拓展字体大小单位"><a href="#拓展字体大小单位" class="headerlink" title="拓展字体大小单位 %"></a>拓展字体大小单位 %</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">任意浏览器的默认字体高都是16px。所有未经调整的浏览器都符合: 1em=16px。</span><br><span class="line">那么12px=<span class="number">0.</span>75em,10px=<span class="number">0.</span>625em。为了简化font-size的换算，需要在css中</span><br><span class="line">的body选择器中声明font-size=<span class="number">62.5</span>%，这就使em值变为 16px*<span class="number">62.5</span>%=10px,</span><br><span class="line">这样12px=<span class="number">1.</span>2em, 10px=1em, 也就是说只需要将你的原来的px数值除以<span class="number">10</span>，</span><br><span class="line">然后换上em作为单位就行了。</span><br></pre></td></tr></table></figure>
+
+<p>从以上信息可以知道字体的大小关系： <code>16px = 100%</code> 那么我想要设置字体大小为 37.5px。只需要知道 37.5px 和 16px 的比值，然后将这个比值设置为 html 的 font-size 的百分比大小，那么横屏时的字体大小就和竖屏时字体大小一样为 37.5px 了。求解得出<code> 37.5/16 = 2.34375</code>；就约等于 234.38%。设置后横屏时的字体和竖屏时的字体看起来相差无几。</p>
+<p>至此，通过以上两种方法都可以解决当前问题。</p>
+<h3 id="3-js-中数组的-map-方法"><a href="#3-js-中数组的-map-方法" class="headerlink" title="3.js 中数组的 map 方法"></a>3.js 中数组的 map 方法</h3><h4 id="应用场景一："><a href="#应用场景一：" class="headerlink" title="应用场景一："></a>应用场景一：</h4><p>一个对象数组，想要将该对象中的一个或多个属性单独抽出来组成新的数组。使用 map 方法</p>
+<p>举例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> array = [</span><br><span class="line">  &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">10</span>, <span class="attr">c</span>: <span class="number">4</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">a</span>: <span class="number">2</span>, <span class="attr">b</span>: <span class="number">20</span>, <span class="attr">c</span>: <span class="number">5</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">a</span>: <span class="number">3</span>, <span class="attr">b</span>: <span class="number">30</span>, <span class="attr">c</span>: <span class="number">6</span> &#125;,</span><br><span class="line">]</span><br><span class="line"><span class="keyword">const</span> abs = array.map(<span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> obj = &#123;</span><br><span class="line">    <span class="attr">a</span>: e.a,</span><br><span class="line">    <span class="attr">b</span>: e.b,</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> obj</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// abs   [&#123;a: 1, b: 10&#125;, &#123;a: 2, b: 20&#125;, &#123;a: 3, b: 30&#125;]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="应用场景二："><a href="#应用场景二：" class="headerlink" title="应用场景二："></a>应用场景二：</h4><p>一个对象数组，想要将该对象中的第一个键值对的值变成新数组对象中的键，第二个键值对的值变成新数组对象中的值。</p>
+<p>举例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> array = [</span><br><span class="line">  &#123; <span class="attr">aaa</span>: <span class="string">&#x27;name&#x27;</span>, <span class="attr">bbb</span>: <span class="string">&#x27;Jhon&#x27;</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">aaa</span>: <span class="string">&#x27;age&#x27;</span>, <span class="attr">bbb</span>: <span class="string">&#x27;20&#x27;</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">aaa</span>: <span class="string">&#x27;sex&#x27;</span>, <span class="attr">bbb</span>: <span class="string">&#x27;male&#x27;</span> &#125;,</span><br><span class="line">]</span><br><span class="line"><span class="keyword">const</span> abs = array.map(<span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> obj = &#123;&#125;</span><br><span class="line">  obj[e.aaa] = e.bbb</span><br><span class="line">  <span class="keyword">return</span> obj</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// abs  [&#123;name: &quot;Jhon&quot;&#125;, &#123;age: &quot;20&quot;&#125;, &#123;sex: &quot;male&quot;&#125;]</span></span><br></pre></td></tr></table></figure>
+
+<p>更多 map 的用法可以参考 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map">Array.prototype.map</a></p>
+<p>更多内容待更新…</p>
+<h2 id="2021-03-22-更新"><a href="#2021-03-22-更新" class="headerlink" title="2021-03-22 更新"></a>2021-03-22 更新</h2><h3 id="1-移动端浏览器上下滑动问题"><a href="#1-移动端浏览器上下滑动问题" class="headerlink" title="1.移动端浏览器上下滑动问题"></a>1.移动端浏览器上下滑动问题</h3><p>在开发移动端的时候，上下滑动屏幕会导致整个页面跟着手指上下滑动。（例如下拉到顶部时，继续下拉，页面会被继续下拉而顶部显示空白）虽说这个效果并不影响用户体验，但是在开发一个下拉功能的时候，发现影响很大。于是就要解决该问题</p>
+<p>解决这个问题也很简单，就是阻止默认事件。如下代码所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">func</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">	e.preventDefault();</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.body.addEventListener(</span><br><span class="line">	<span class="string">&quot;touchmove&quot;</span>,</span><br><span class="line">	func,</span><br><span class="line">	&#123; <span class="attr">passive</span>: <span class="literal">false</span> &#125;</span><br><span class="line">); <span class="comment">// passive设置为true时，表示 listener 永远不会调用 preventDefault()。这里设置为false。用来兼容ios和Android都可以生效</span></span><br></pre></td></tr></table></figure>
+
+<p>阻止默认事件后会让整个页面内的滚动事件都无法加载。这个处理方法也很简单，只需要移除这个阻止默认事件的监听即可：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">func</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">	e.preventDefault();</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.body.removeEventListener(</span><br><span class="line">	<span class="string">&quot;touchmove&quot;</span>,</span><br><span class="line">	func,</span><br><span class="line">	&#123; <span class="attr">passive</span>: <span class="literal">false</span> &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-vue-项目中-img-的-src-属性设置"><a href="#2-vue-项目中-img-的-src-属性设置" class="headerlink" title="2.vue 项目中 img 的 src 属性设置"></a>2.vue 项目中 img 的 src 属性设置</h3><p>在 vue 项目中，设置 v-for 循环显示多个图片，每个图片的 src 都是当前项目的 asserts 文件夹下的文件。通常默认都是使用如下方式来显示图片</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;../../asserts/images/logo.png&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>但是当我们将 src 属性的值设置为 data 中的变量后，这样引用就会无法在页面上显示。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;img :src=&quot;imgSrc&quot;&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      imgSrc: &#x27;../../asserts/images/logo.png&#x27;,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>解决办法：</p>
+<blockquote>
+<p>1.把图片放在 src 同级的 static 文件夹下。 2.把图片放在 cdn 上，把网络地址存在 imgUrl 里，然后直接<img :src="imgUrl">去展示。 3.图片放在 assets 文件夹，然后在 data 里面 require 进图片</p>
+</blockquote>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/wangq1231/tags/js/">js</a><a class="post-meta__tags" href="/wangq1231/tags/css/">css</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/03/24/kiRT4FUGVJjP3lQ.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/wangq1231/img/weixin.jpg" target="_blank"><img class="post-qr-code-img" data-lazy-src="/wangq1231/img/weixin.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/wangq1231/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" data-lazy-src="/wangq1231/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/wangq1231/2021/05/08/%E2%95%AB%D0%B2%E2%96%93%D1%81%E2%95%99%D1%8B%E2%95%A1%E2%95%9F%E2%94%AC%E2%95%9D%E2%95%A1%E2%94%80%E2%95%9D%E2%95%99%E2%94%9C%E2%96%84%E2%95%99%D1%8B%E2%95%9C%D1%82%E2%94%9C%E2%96%84/"><img class="prev-cover" data-lazy-src="/wangq1231/img/article_default.png" onerror="onerror=null;src='/wangq1231/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Java实现登录功能的加密与解密</div></div></a></div><div class="next-post pull-right"><a href="/wangq1231/2021/03/02/%E2%95%90%C2%B0%E2%95%92%E2%95%9B%E2%95%94%E2%95%A7%E2%95%A7%E2%96%80%E2%96%93%E2%94%90%E2%95%A9%D0%81%E2%94%B4%D1%9E%E2%94%82%E2%95%A0/"><img class="next-cover" data-lazy-src="https://i.loli.net/2021/03/24/UdYcOv6RLkTj3Ki.jpg" onerror="onerror=null;src='/wangq1231/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">网站上线部署流程</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/wangq1231/2021/02/20/vue3-╨┬╠╪╨╘бкбкбк╘┌css╓╨╩╣╙├js▒ф┴┐/" title="vue3 新特性——在css中使用js变量"><img class="cover" data-lazy-src="/wangq1231/img/article_default.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-20</div><div class="title">vue3 新特性——在css中使用js变量</div></div></a></div><div><a href="/wangq1231/2022/01/02/JS╕ў╜°╓╞╓о╝ф╡─╫к╗╗/" title="JS各进制之间的转换"><img class="cover" data-lazy-src="https://i.loli.net/2021/06/05/DzTUKJSZAE8rqPG.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-02</div><div class="title">JS各进制之间的转换</div></div></a></div><div><a href="/wangq1231/2021/06/05/JS╢┴╚б╙├╗з═и╣¤├№┴ю╨╨╩ф╚ы╡─╨┼╧в/" title="JS读取用户命令行的输入"><img class="cover" data-lazy-src="https://i.loli.net/2021/06/05/DzTUKJSZAE8rqPG.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-05</div><div class="title">JS读取用户命令行的输入</div></div></a></div><div><a href="/wangq1231/2021/06/22/JS╩¤╛▌╜с╣╣╓оMap/" title="JS中Map和Object的对比"><img class="cover" data-lazy-src="/wangq1231/img/article_default.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-22</div><div class="title">JS中Map和Object的对比</div></div></a></div><div><a href="/wangq1231/2021/11/13/eventEmitter╝Є╡е╩╡╧╓/" title="EventEmitter简单实现"><img class="cover" data-lazy-src="https://i.loli.net/2021/11/13/uDMNwbaiqszPBGm.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-13</div><div class="title">EventEmitter简单实现</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2021-03-16-%E6%9B%B4%E6%96%B0"><span class="toc-number">1.</span> <span class="toc-text">2021-03-16 更新</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%97%8B%E8%BD%AC%E5%85%83%E7%B4%A0%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.1.</span> <span class="toc-text">1.旋转元素遇到的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%AE%BE%E5%A4%87%E6%A8%AA%E7%AB%96%E5%B1%8F%E5%88%87%E6%8D%A2%E6%97%B6%E5%AD%97%E4%BD%93%E5%A4%A7%E5%B0%8F%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.2.</span> <span class="toc-text">2.移动端设备横竖屏切换时字体大小的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8B%93%E5%B1%95%E5%AD%97%E4%BD%93%E5%A4%A7%E5%B0%8F%E5%8D%95%E4%BD%8D"><span class="toc-number">1.2.1.</span> <span class="toc-text">拓展字体大小单位 %</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-js-%E4%B8%AD%E6%95%B0%E7%BB%84%E7%9A%84-map-%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">3.js 中数组的 map 方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E4%B8%80%EF%BC%9A"><span class="toc-number">1.3.1.</span> <span class="toc-text">应用场景一：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E4%BA%8C%EF%BC%9A"><span class="toc-number">1.3.2.</span> <span class="toc-text">应用场景二：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2021-03-22-%E6%9B%B4%E6%96%B0"><span class="toc-number">2.</span> <span class="toc-text">2021-03-22 更新</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8A%E4%B8%8B%E6%BB%91%E5%8A%A8%E9%97%AE%E9%A2%98"><span class="toc-number">2.1.</span> <span class="toc-text">1.移动端浏览器上下滑动问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-vue-%E9%A1%B9%E7%9B%AE%E4%B8%AD-img-%E7%9A%84-src-%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.2.</span> <span class="toc-text">2.vue 项目中 img 的 src 属性设置</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By AQIANG</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Good Good Study! Day Day Up!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/wangq1231/js/utils.js"></script><script src="/wangq1231/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/wangq1231/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'yXM3gtelH8EjtjRBXAmIUPQi-gzGzoHsz',
+      appKey: 'HxvCO70emovygj1QGBkdMLGg',
+      placeholder: '有什么问题都欢迎留言噢，会看到的...',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="6816212515" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="list" data-preload="none" data-listmaxheight="200px" data-autoplay="true" muted></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

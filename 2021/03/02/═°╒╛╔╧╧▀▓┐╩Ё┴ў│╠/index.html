@@ -1,0 +1,350 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>网站上线部署流程 | 技术随笔WQ</title><meta name="keywords" content="服务器,linux"><meta name="author" content="AQIANG,1550791330@qq.com"><meta name="copyright" content="AQIANG"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="网站从搭建到真实上线的一系列过程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网站上线部署流程">
+<meta property="og:url" content="https://wangq1231.gitee.io/2021/03/02/%E2%95%90%C2%B0%E2%95%92%E2%95%9B%E2%95%94%E2%95%A7%E2%95%A7%E2%96%80%E2%96%93%E2%94%90%E2%95%A9%D0%81%E2%94%B4%D1%9E%E2%94%82%E2%95%A0/index.html">
+<meta property="og:site_name" content="技术随笔WQ">
+<meta property="og:description" content="网站从搭建到真实上线的一系列过程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/03/24/UdYcOv6RLkTj3Ki.jpg">
+<meta property="article:published_time" content="2021-03-02T06:19:55.000Z">
+<meta property="article:modified_time" content="2021-03-15T16:00:00.000Z">
+<meta property="article:author" content="AQIANG">
+<meta property="article:tag" content="服务器">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/03/24/UdYcOv6RLkTj3Ki.jpg"><link rel="shortcut icon" href="/wangq1231/img/favicon.jpg"><link rel="canonical" href="https://wangq1231.gitee.io/2021/03/02/%E2%95%90%C2%B0%E2%95%92%E2%95%9B%E2%95%94%E2%95%A7%E2%95%A7%E2%96%80%E2%96%93%E2%94%90%E2%95%A9%D0%81%E2%94%B4%D1%9E%E2%94%82%E2%95%A0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/wangq1231/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/wangq1231/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-03-16 00:00:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><link rel="stylesheet" href="APlayer.min.css"><div id="aplayer"></div><script src="https://cdn.jsdelivr.net/gh/radium-bit/res@master/live2d/autoload.js" async></script><script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js" async></script><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"></link><link rel="stylesheet" href="//at.alicdn.com/t/font_2443718_x22y5l11sv.css"></link><meta name="generator" content="Hexo 5.4.1"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="/wangq1231/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/wangq1231/archives/"><div class="headline">文章</div><div class="length-num">22</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/wangq1231/tags/"><div class="headline">标签</div><div class="length-num">13</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/wangq1231/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/wangq1231/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/wangq1231/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/wangq1231/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/wangq1231/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/wangq1231/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 更多</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/wangq1231/photo/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li><li><a class="site-page" href="/wangq1231/music/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/wangq1231/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2021/03/24/UdYcOv6RLkTj3Ki.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/wangq1231/">技术随笔WQ</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/wangq1231/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/wangq1231/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/wangq1231/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/wangq1231/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/wangq1231/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 更多</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/wangq1231/photo/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li><li><a class="site-page" href="/wangq1231/music/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/wangq1231/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">网站上线部署流程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-03-02T06:19:55.000Z" title="发表于 2021-03-02 14:19:55">2021-03-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-03-15T16:00:00.000Z" title="更新于 2021-03-16 00:00:00">2021-03-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/wangq1231/categories/%E6%8A%80%E8%83%BD%E6%8F%90%E5%8D%87/">技能提升</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><br>
+
+<h3 id="1-服务器购买"><a href="#1-服务器购买" class="headerlink" title="1.服务器购买"></a>1.服务器购买</h3><p>国内服务器： <a target="_blank" rel="noopener" href="https://www.aliyun.com/product/ecs">阿里云 ECS(Elastic Compute Service)</a>， <a target="_blank" rel="noopener" href="https://buy.cloud.tencent.com/cvm">腾讯云 CVM(Cloud Virtual Machine)</a>等</p>
+<p>国外服务器：<a target="_blank" rel="noopener" href="https://www.vultr.com/">日本[Vultr]</a>，美国 Linode，谷歌云，微软 Azure，亚马逊 AWS 等</p>
+<p>这一步需要创建好服务器实例，分配好公网 IP 地址。</p>
+<h3 id="2-域名购买"><a href="#2-域名购买" class="headerlink" title="2.域名购买"></a>2.域名购买</h3><p>国内：阿里、腾讯等</p>
+<p>国外：Godaddy</p>
+<h3 id="3-域名解析-配置-DNS"><a href="#3-域名解析-配置-DNS" class="headerlink" title="3.域名解析(配置 DNS)"></a>3.域名解析(配置 DNS)</h3><p>注册好域名后需要将域名映射到自己服务器对应的 ip 地址，这样别人才能通过域名访问到我们的服务器。</p>
+<p>这个步骤叫做域名解析，通过域名服务商提供的后台就可以操作，一般域名解析会有延迟，不是及时生效的。</p>
+<span id="more"></span>
+
+<h3 id="4-服务器环境搭建"><a href="#4-服务器环境搭建" class="headerlink" title="4.服务器环境搭建"></a>4.服务器环境搭建</h3><p><strong>这里我选择的是CentOS操作系统（其他系统命令不同）</strong></p>
+<p>配置服务器， Mac 系统下直接使用终端就 ok</p>
+<p>windows 系统下需要用到 git bash，或者别的工具(Putty)</p>
+<p>需要用到的 Linux 系统操作命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 远程连接命令</span></span><br><span class="line">ssh root@域名</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 展示当前文件夹路径</span></span><br><span class="line">pwd</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切换文件夹目录</span></span><br><span class="line">cd 目录</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 展示当前文件夹中内容</span></span><br><span class="line">ls</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 编辑文件</span></span><br><span class="line">vim 文件路径</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 传输文件</span></span><br><span class="line">scp 本地文件路径 root@域名:远程路径</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压文件命令</span></span><br><span class="line">unzipjs</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-1-安装-CentOS-开发人员相关包"><a href="#4-1-安装-CentOS-开发人员相关包" class="headerlink" title="4.1 安装 CentOS 开发人员相关包"></a>4.1 安装 CentOS 开发人员相关包</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum groupinstall <span class="string">&#x27;Development tools&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-配置免密登录"><a href="#4-2-配置免密登录" class="headerlink" title="4.2 配置免密登录"></a>4.2 配置免密登录</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在自己电脑上 生成本地 密钥对</span></span><br><span class="line">ssh-keygen -t rsa</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成的位置</span></span><br><span class="line"><span class="comment"># windows 在 C:\users\你的用户名\.ssh</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在服务器创建一个 .ssh 文件夹</span></span><br><span class="line">mkdir .ssh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换到这个文件夹</span></span><br><span class="line"><span class="built_in">cd</span> .ssh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个文件</span></span><br><span class="line">touch authorized_keys</span><br><span class="line"></span><br><span class="line"><span class="comment"># 把本地电脑生成的密钥对中 id_rsa_pub 文件中的内容放到 authorized_keys 文件中去</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDP0Ur7rojMdFqTDUQx56QuxeNbqbeCO6lQz9t3KZAWjjJhSG5v1TMhElunJg7HJtovIGlTDwrco9U36gF/nJ+66Gwzeme4eSwUYAu8D7XjFEfFvUPHwtSUDZKV9jtPPsoujUM9LnxvJ09buU0+xpOCE6LAR7e3vPRmrlolQc88b/JbH2A4lsXGIhGNNK/Z6M5LagD8KTNePLv7jc3kA2GZdUUze1wIVBjO21BTK90hfVbEGL0WREVh9RKR33jl7L5s8mnBbLJbsuk/Jk0C5ZNSKKCpFfDBsDQWYodyw1wI7gdpWuV8cH0CYz4xTRuOcIOv7sUjx9gbW09eNZnNOkDxpTvzPuP9CqKFSBma1xtnhhJYdw6b+xnoVPthUKhWzvp9ElQUtAGK+Xzauk5CxHyESZGGoA/YZQZ0U0rmoTrvG5JvnYOclDFMAIfe/pBJR5Ue6tlfBSMBWaHs61b334kAAUbtgF8TW9owH6lSZYsz2mS8nPF6a47bIwZwwsXmoWM= hua&#x27;wei@LAPTOP-4NR7HM4G&quot;</span> &gt;&gt; authorized_keys</span><br><span class="line"></span><br><span class="line"><span class="comment"># 退出服务器，下次就免密登录</span></span><br><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-3-安装-nginx"><a href="#4-3-安装-nginx" class="headerlink" title="4.3 安装 nginx"></a>4.3 安装 nginx</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 添加nginx 源</span></span><br><span class="line">sudo yum install epel-release</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装nginx</span></span><br><span class="line">sudo yum install nginx</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动nginx</span></span><br><span class="line">sudo systemctl start nginx</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 配置防火墙规则</span></span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-service=http</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-service=https</span><br><span class="line">sudo firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-4-安装-JDK（后端是-java-运行的）"><a href="#4-4-安装-JDK（后端是-java-运行的）" class="headerlink" title="4.4 安装 JDK（后端是 java 运行的）"></a>4.4 安装 JDK（后端是 java 运行的）</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 1. 在你的本地Windows系统中下载 Linux系统下的jdk，jdk下载官网https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html。</span></span><br><span class="line">下载你需要的jdk版本，我用的是 jdk-8u221-linux-x64.tar.gz</span><br><span class="line"><span class="meta">#</span><span class="bash"> 2.下载完成后将安装包上传服务器</span></span><br><span class="line">使用winscp上传文件至 /usr/java</span><br><span class="line"><span class="meta">#</span><span class="bash"> 3.解压文件</span></span><br><span class="line">tar -zxvf /usr/java/jdk-8u221-linux-x64.tar.gz</span><br><span class="line"><span class="meta">#</span><span class="bash"> 4.配置path</span></span><br><span class="line">cd /etc</span><br><span class="line">vim profile</span><br><span class="line">在profile文件中添加如下代码</span><br><span class="line">export JAVA_HOME=/usr/java/jdk1.8.0_221   # jdk解压后的路径</span><br><span class="line">export CLASSPATH=$JAVA_HOME/lib/</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line">export PATH JAVA_HOME CLASSPATH</span><br><span class="line"><span class="meta">#</span><span class="bash"> 5.查看是否安装成功</span></span><br><span class="line">java -version</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-5-安装-MySQL（数据库）"><a href="#4-5-安装-MySQL（数据库）" class="headerlink" title="4.5 安装 MySQL（数据库）"></a>4.5 安装 MySQL（数据库）</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 下载并安装MySQL 源</span></span><br><span class="line">wget https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm</span><br><span class="line">sudo yum localinstall mysql80-community-release-el7-3.noarch.rpm</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 验证仓库是否添加成功</span></span><br><span class="line">yum repolist enabled | grep &quot;mysql.*-community.*&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装MySQL</span></span><br><span class="line">sudo yum install mysql-community-server -y</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 如果上一步报错，执行下面的命令后再次执行上面的安装Mysql命令</span></span><br><span class="line">sudo yum module disable mysql</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改配置 lower_case_table_names=1</span></span><br><span class="line">需要先修改配置文件，</span><br><span class="line">vi /etc/my.cnf</span><br><span class="line">[mysqld]  下增加</span><br><span class="line">lower_case_table_names=1</span><br><span class="line">注：如果不加这一行，mysql会区分数据库表的大小写。 0代表区分大小写，1代表不区分大小写。</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动MySQL</span></span><br><span class="line">systemctl start mysqld</span><br><span class="line"></span><br><span class="line">systemctl enable mysqld</span><br><span class="line">systemctl status mysqld</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 找到默认密码</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> MySQL安装完毕后会设置一个默认密码，我们需要找到默认密码</span></span><br><span class="line">grep &#x27;temporary password&#x27; /var/log/mysqld.log</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 连接到MySQL数据库，修改密码</span></span><br><span class="line">mysql -uroot -p</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改数据库密码 密码要求有大小写英文字母和数字</span></span><br><span class="line">ALTER USER &#x27;root&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27;Hehuang++0724&#x27;;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 允许远程连接</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> use mysql;</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> select host,user,authentication_string,plugin from user;</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> update user <span class="built_in">set</span> host=<span class="string">&#x27;%&#x27;</span> <span class="built_in">where</span> user=<span class="string">&#x27;root&#x27;</span>;</span></span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> flush privileges;</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 注：如果服务器防火墙未开，记得开放mysql的端口。另外安全组也需要开放mysql端口。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-上传网站资源"><a href="#5-上传网站资源" class="headerlink" title="5.上传网站资源"></a>5.上传网站资源</h3><p>可以使用 scp 命令，也可以安装 FTP(winSCP、vsftpd)工具。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> scp 命令运行在本地电脑</span></span><br><span class="line">scp 本地文件 root@域名:远程路径</span><br><span class="line"><span class="meta">#</span><span class="bash"> 在服务器创建文件夹</span></span><br><span class="line">mkdir /home/nginx</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 把网页文件移动到创建好的文件夹里</span></span><br><span class="line">mv ./dist.zip /home/nginx/</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压压缩文件</span></span><br><span class="line">cd /home/nginx</span><br><span class="line">unzip ./dist.zip</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改文件夹名字</span></span><br><span class="line">mv dist 文件夹名</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-配置-nginx"><a href="#6-配置-nginx" class="headerlink" title="6.配置 nginx"></a>6.配置 nginx</h3><p>创建一个配置文件 exam.conf （配置 nginx 服务）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/nginx/conf.d</span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建配置文件</span></span><br><span class="line">touch exam.conf</span><br><span class="line">vim exam.conf</span><br><span class="line"><span class="meta">#</span><span class="bash"> 按i键 进入编辑模式</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 输入如下配置内容</span></span><br><span class="line">server &#123;</span><br><span class="line">	listen 80;</span><br><span class="line">	server_name www.yourdomain.com; # 服务器地址/域名地址</span><br><span class="line">	location / &#123;</span><br><span class="line">		root /home/nginx/exam; # 静态页面文件的路径</span><br><span class="line">		index index.html index.htm;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 保存退出</span></span><br><span class="line">:wq</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重新启动nginx服务</span></span><br><span class="line">sudo systemctl reload nginx</span><br><span class="line"><span class="meta">#</span><span class="bash"> 或 以下命令</span></span><br><span class="line">nginx -s reload</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看nginx状态</span></span><br><span class="line">sudo systemctl status nginx</span><br><span class="line"><span class="meta">#</span><span class="bash"> 停止nginx服务</span></span><br><span class="line">sudo systemctl stop nginx</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-接口项目部署-java-项目"><a href="#7-接口项目部署-java-项目" class="headerlink" title="7. 接口项目部署(java 项目)"></a>7. 接口项目部署(java 项目)</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 启动jar包</span></span><br><span class="line">java -jar /home/java/exam.jar  # 关闭后就停止运行了</span><br><span class="line">nohup java -jar /home/java/exam.jar &gt;exam.log 2&gt;&amp;1 &amp;  # 后台不停止运行</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看日志</span></span><br><span class="line">cat exam.log</span><br><span class="line"><span class="meta">#</span><span class="bash"> 关闭防火墙才能访问springboot项目 查看其防火墙的状态：</span></span><br><span class="line">systemctl status firewalld.service</span><br><span class="line"><span class="meta">#</span><span class="bash"> 关闭后就可以正常访问页面</span></span><br><span class="line">systemctl stop firewalld.service</span><br><span class="line"><span class="meta">#</span><span class="bash"> 重启防火墙</span></span><br><span class="line">service iptables restart</span><br></pre></td></tr></table></figure>
+
+<h3 id="Node-作为服务端："><a href="#Node-作为服务端：" class="headerlink" title="Node 作为服务端："></a>Node 作为服务端：</h3><h3 id="8-安装-Node-js-（后端是-Node-运行的）"><a href="#8-安装-Node-js-（后端是-Node-运行的）" class="headerlink" title="8.安装 Node.js （后端是 Node 运行的）"></a>8.安装 Node.js （后端是 Node 运行的）</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum自带源中没有Node.js，所以首先要获取Node.js资源</span></span><br><span class="line">curl --silent --location https://rpm.nodesource.com/setup_14.x |bash -</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装Node.js</span></span><br><span class="line">yum install -y nodejs</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装完成后使用如下指令测试安装是否成功</span></span><br><span class="line">node -v</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装pm2 启动node.js项目</span></span><br><span class="line">pm2 start 文件名/id</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 停止</span></span><br><span class="line">pm2 stop 文件名/id</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 从pm2列表 删除</span></span><br><span class="line">pm2 delete 文件名/id</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-Node-项目部署步骤（Node-项目）"><a href="#9-Node-项目部署步骤（Node-项目）" class="headerlink" title="9.Node 项目部署步骤（Node 项目）"></a>9.Node 项目部署步骤（Node 项目）</h3><p>1.修改配置项文件中的 mysql 数据库密码为服务器中数据库的密码 2.上传项目压缩文件到服务器 3.再服务器上解压项目文件到 /home/nginx/hlj 4.为项目安装依赖 npm i 5.修改 mysql 数据库 密码规则</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">use mysql;</span><br><span class="line">ALTER USER &#x27;root&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27;Hehuang++0724&#x27; PASSWORD EXPIRE NEVER;</span><br><span class="line">ALTER USER &#x27;root&#x27;@&#x27;localhost&#x27; IDENTIFIED WITH mysql_native_password BY &#x27;Hehuang++0724&#x27;;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看是否以及修改成功</span></span><br><span class="line">select user,host plugin from user where user=&#x27;root&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>6.创建新的数据库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 登录数据口执行命令</span></span><br><span class="line">create database 数据库名称</span><br></pre></td></tr></table></figure>
+
+<p>7.在之前的 nginx 配置文件中添加反向代理的配置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">location ^~ /api/ &#123;</span><br><span class="line">	rewrite ^/api/(.*)$ /$1 break;</span><br><span class="line">	proxy_pass http://127.0.0.1:3000; # 服务端配置的默认端口</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>8.新增一个服务端配置文件</p>
+<p>admin.conf</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/nginx/conf.d</span><br><span class="line">touch admin.conf</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 在文件中输入以下内容</span></span><br><span class="line">server &#123;</span><br><span class="line">	listen 80;</span><br><span class="line">	server_name admin.hehuang724.cn; # 域名前加admin</span><br><span class="line">	location / &#123;</span><br><span class="line">		proxy_pass http://127.0.0.1:3000;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="部署过程遇到的问题："><a href="#部署过程遇到的问题：" class="headerlink" title="部署过程遇到的问题："></a>部署过程遇到的问题：</h2><h3 id="1-linux-上部署-springboot-项目启动成功本地无法访问"><a href="#1-linux-上部署-springboot-项目启动成功本地无法访问" class="headerlink" title="1.linux 上部署 springboot 项目启动成功本地无法访问"></a>1.linux 上部署 springboot 项目启动成功本地无法访问</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 关闭防火墙才能访问springboot项目</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 系统是centos8 ,查看其防火墙的状态：</span></span><br><span class="line">systemctl status firewalld.service</span><br><span class="line"><span class="meta">#</span><span class="bash"> 关闭后就可以正常访问页面</span></span><br><span class="line">systemctl stop firewalld.service</span><br><span class="line"><span class="meta">#</span><span class="bash"> 重启防火墙</span></span><br><span class="line">service iptables restart</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-linux-服务器-mysql-区分表名大小写解决办法"><a href="#2-linux-服务器-mysql-区分表名大小写解决办法" class="headerlink" title="2.linux 服务器 mysql 区分表名大小写解决办法"></a>2.linux 服务器 mysql 区分表名大小写解决办法</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">在mysql安装目录(/etc/my.cnf)中的my.cnf文件中[mysqld]下面添加一行配置， lower_case_table_names=1</span><br><span class="line"><span class="meta">#</span><span class="bash"> 重启mysql服务</span></span><br><span class="line">service mysql restart</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重启mysql服务发现报错，原因是只有在初始化的时候设置 lower_case_table_names=1才有效</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解决办法：卸载mysql，按下操作</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 卸载完mysql后，重新安装，安装完成后，首先立马修改配置文件</span></span><br><span class="line">vi /etc/my.cnf</span><br><span class="line">[mysqld]  下增加</span><br><span class="line">lower_case_table_names=1</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 配置完后重启mysql</span></span><br><span class="line">systemctl start mysqld</span><br><span class="line">systemctl enable mysqld</span><br><span class="line">systemctl status mysqld</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 随后按上面的操作重新修改数据库密码</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-卸载-mysql"><a href="#3-卸载-mysql" class="headerlink" title="3.卸载 mysql"></a>3.卸载 mysql</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">1、关闭mysql</span><br><span class="line">service mysqld stop</span><br><span class="line"></span><br><span class="line">2、查看安装的mysql</span><br><span class="line">rpm -qa|grep -i mysql</span><br><span class="line"><span class="meta">$</span><span class="bash">&gt; [root@vultrguest ~]<span class="comment"># rpm -qa|grep -i mysql</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash">&gt; mysql-community-libs-8.0.23-1.el7.x86_64</span></span><br><span class="line"><span class="meta">$</span><span class="bash">&gt; mysql80-community-release-el7-1.noarch</span></span><br><span class="line"><span class="meta">$</span><span class="bash">&gt; mysql-community-client-8.0.23-1.el7.x86_64</span></span><br><span class="line"><span class="meta">$</span><span class="bash">&gt; mysql-community-common-8.0.23-1.el7.x86_64</span></span><br><span class="line"><span class="meta">$</span><span class="bash">&gt; mysql-community-server-8.0.23-1.el7.x86_64</span></span><br><span class="line"><span class="meta">$</span><span class="bash">&gt; mysql-community-client-plugins-8.0.23-1.el7.x86_64</span></span><br><span class="line"></span><br><span class="line">3、卸载mysql</span><br><span class="line"><span class="meta">$</span><span class="bash">&gt; rpm -ev mysql-community-libs-8.0.23-1.el7.x86_64 --nodeps</span></span><br><span class="line"><span class="meta">$</span><span class="bash">&gt; rpm -ev mysql80-community-release-el7-1.noarch --nodeps</span></span><br><span class="line"><span class="meta">$</span><span class="bash">&gt; rpm -ev mysql-community-client-8.0.23-1.el7.x86_64  --nodeps</span></span><br><span class="line"><span class="meta">$</span><span class="bash">&gt; rpm -ev mysql-community-common-8.0.23-1.el7.x86_64 --nodeps</span></span><br><span class="line"><span class="meta">$</span><span class="bash">&gt; rpm -ev mysql-community-server-8.0.23-1.el7.x86_64 --nodeps</span></span><br><span class="line"><span class="meta">$</span><span class="bash">&gt; rpm -ev mysql-community-client-plugins-8.0.23-1.el7.x86_64 --nodeps</span></span><br><span class="line"></span><br><span class="line">4、找出并删除mysql相关目录</span><br><span class="line">find / -name mysql</span><br><span class="line"><span class="meta">$</span><span class="bash">&gt; [root@vultrguest ~]<span class="comment"># find / -name mysql</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash">&gt; /var/lib/mysql</span></span><br><span class="line"><span class="meta">$</span><span class="bash">&gt; /var/lib/mysql/mysql</span></span><br><span class="line"><span class="meta">$</span><span class="bash">&gt; /usr/bin/mysql</span></span><br><span class="line"><span class="meta">$</span><span class="bash">&gt; /usr/lib64/mysql</span></span><br><span class="line"><span class="meta">$</span><span class="bash">&gt; /etc/logrotate.d/mysql</span></span><br><span class="line">rm -rf /var/lib/mysql</span><br><span class="line">rm -rf /var/lib/mysql/mysql</span><br><span class="line">rm -rf /usr/bin/mysql</span><br><span class="line">rm -rf /usr/lib64/mysql</span><br><span class="line">rm -rf /etc/logrotate.d/mysql</span><br><span class="line"></span><br><span class="line">5、删除my.cnf</span><br><span class="line">rm -rf /etc/my.cnf</span><br><span class="line"></span><br><span class="line">6、检查卸载情况</span><br><span class="line">rpm -qa|grep -i mysql</span><br><span class="line">显示为空，卸载完毕。</span><br><span class="line">卸载完成后参考以下博客进行重新安装mysql并配置不区分大小写：</span><br><span class="line">https://blog.csdn.net/qq_35845339/article/details/106547742</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35845339/article/details/106547742">Linux 下安装 mysql8(并设置不区分数据库表大小写)</a></p>
+<h3 id="4-nginx-解决前端跨域问题"><a href="#4-nginx-解决前端跨域问题" class="headerlink" title="4.nginx 解决前端跨域问题"></a>4.nginx 解决前端跨域问题</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	listen 80;</span><br><span class="line">	server_name www.yourdomain.com;    <span class="comment"># 服务器域名或公网ip地址</span></span><br><span class="line">	location / &#123;</span><br><span class="line">		root /usr/share/nginx/exam;</span><br><span class="line">		index index.html index.htm;</span><br><span class="line">		<span class="comment"># 添加请求头</span></span><br><span class="line">		add_header <span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span> *;</span><br><span class="line">		add_header <span class="string">&#x27;Access-Control-Allow-Credentials&#x27;</span> <span class="string">&#x27;true&#x27;</span>;</span><br><span class="line">		add_header <span class="string">&#x27;Access-Control-Allow-Methods&#x27;</span> <span class="string">&#x27;GET, POST, OPTIONS&#x27;</span>;</span><br><span class="line">		add_header <span class="string">&#x27;Access-Control-Allow-Headers&#x27;</span> <span class="string">&#x27;DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type&#x27;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment"># 配置接口</span></span><br><span class="line">	location /api &#123;</span><br><span class="line">		include uwsgi_params;</span><br><span class="line">		<span class="comment"># 代理路径&#x27;/api&#x27;到本地3033端口下(服务启动在3033端口)</span></span><br><span class="line">		proxy_pass  http://localhost:3033/api;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+
+<h3 id="注意-设置-proxy-pass-有可能访问当前域名页面会提示-502BadGate"><a href="#注意-设置-proxy-pass-有可能访问当前域名页面会提示-502BadGate" class="headerlink" title="注意: 设置 proxy_pass 有可能访问当前域名页面会提示 502BadGate"></a>注意: 设置 proxy_pass 有可能访问当前域名页面会提示 502BadGate</h3><h4 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h4><p>查看系统 httpd 配置：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getsebool -a | grep httpd</span><br></pre></td></tr></table></figure>
+
+<p>设置 httpd 可以连接到网络，执行命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setsebool httpd_can_network_connect on -P</span><br></pre></td></tr></table></figure>
+
+<h2 id="其他："><a href="#其他：" class="headerlink" title="其他："></a>其他：</h2><h3 id="1-Linux-相关命令："><a href="#1-Linux-相关命令：" class="headerlink" title="1.Linux 相关命令："></a>1.Linux 相关命令：</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 端口进程相关</span></span><br><span class="line">netstat -anp  # 查看端口信息</span><br><span class="line">netstat -anp | grep 3306  # 查看端口信息，过滤3306端口</span><br><span class="line">sudo kill -9 pid号  # 杀死pid对应进程</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> springboot相关</span></span><br><span class="line">nohup java -jar /home/java/exam.jar &gt;exam.log 2&gt;&amp;1 &amp;  # 需修改jar包的路径</span><br><span class="line"><span class="meta">#</span><span class="bash"> nohup：不挂断地运行命令，退出帐户之后继续运行相应的进程。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> exam.log：是nohup把<span class="built_in">command</span>的输出重定向到当前目录的指定的“日志文件名.<span class="built_in">log</span>”文件中，即输出内容不打印到屏幕上，而是输出到<span class="string">&quot;exam.log&quot;</span>文件中。不指定文件名会在当前目录创建nohup.out，如果当前目录的 nohup.out 文件不可写，输出重定向到 <span class="variable">$HOME</span>/nohup.out 文件中。如果没有文件能创建或打开以用于追加，那么 Command 参数指定的命令不可调用。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 2&gt;&amp;1：2就是标准错误，1是标准输出，该命令相当于把标准错误重定向到标准输出么。这里&amp;相当于标准错误等效于标准输出，即把标准错误和标准输出同时输出到指定的“exam.log”文件中。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 最后的&amp;：让该作业在后台运行</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> mysql相关</span></span><br><span class="line">whereis mysql # 显示mysql的安装和文件目录等</span><br><span class="line">systemctl start mysqld # 启动mysql服务</span><br><span class="line">systemctl enable mysqld # 开启mysql服务</span><br><span class="line">systemctl status mysqld # 显示mysql的状态</span><br></pre></td></tr></table></figure>
+
+<p>本人将毕业设计在线考试系统已部署到以下地址：</p>
+<p><a target="_blank" rel="noopener" href="http://119.23.79.161:8088/">在线考试系统</a></p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/wangq1231/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a><a class="post-meta__tags" href="/wangq1231/tags/linux/">linux</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/03/24/UdYcOv6RLkTj3Ki.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/wangq1231/img/weixin.jpg" target="_blank"><img class="post-qr-code-img" data-lazy-src="/wangq1231/img/weixin.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/wangq1231/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" data-lazy-src="/wangq1231/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/wangq1231/2021/03/16/%E2%95%A7%D1%8E%E2%94%80%E2%94%90%E2%95%AC%E2%95%A9%E2%95%A0%D1%82%E2%95%AB%E2%96%84%E2%95%9C%D1%81-%E2%94%82%E2%95%93%E2%95%A8%C2%B0%E2%95%95%E2%84%96%E2%95%A8%E2%94%AC/"><img class="prev-cover" data-lazy-src="https://i.loli.net/2021/03/24/kiRT4FUGVJjP3lQ.jpg" onerror="onerror=null;src='/wangq1231/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">项目问题总结(持续更新)</div></div></a></div><div class="next-post pull-right"><a href="/wangq1231/2021/03/02/%E2%94%B4%D0%BC%E2%95%9C%E2%95%99%E2%95%96%E2%96%A0%E2%95%AC%D1%91%E2%95%9E%D1%9E/"><img class="next-cover" data-lazy-src="https://i.loli.net/2021/03/23/yCBzYk19EMupotc.jpg" onerror="onerror=null;src='/wangq1231/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">连接服务器</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/wangq1231/2021/03/02/┴м╜╙╖■╬ё╞ў/" title="连接服务器"><img class="cover" data-lazy-src="https://i.loli.net/2021/03/23/yCBzYk19EMupotc.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-02</div><div class="title">连接服务器</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B4%AD%E4%B9%B0"><span class="toc-number">1.</span> <span class="toc-text">1.服务器购买</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%9F%9F%E5%90%8D%E8%B4%AD%E4%B9%B0"><span class="toc-number">2.</span> <span class="toc-text">2.域名购买</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90-%E9%85%8D%E7%BD%AE-DNS"><span class="toc-number">3.</span> <span class="toc-text">3.域名解析(配置 DNS)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">4.</span> <span class="toc-text">4.服务器环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-%E5%AE%89%E8%A3%85-CentOS-%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E7%9B%B8%E5%85%B3%E5%8C%85"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 安装 CentOS 开发人员相关包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-%E9%85%8D%E7%BD%AE%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 配置免密登录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-%E5%AE%89%E8%A3%85-nginx"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 安装 nginx</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-%E5%AE%89%E8%A3%85-JDK%EF%BC%88%E5%90%8E%E7%AB%AF%E6%98%AF-java-%E8%BF%90%E8%A1%8C%E7%9A%84%EF%BC%89"><span class="toc-number">4.4.</span> <span class="toc-text">4.4 安装 JDK（后端是 java 运行的）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-%E5%AE%89%E8%A3%85-MySQL%EF%BC%88%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%89"><span class="toc-number">4.5.</span> <span class="toc-text">4.5 安装 MySQL（数据库）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E4%B8%8A%E4%BC%A0%E7%BD%91%E7%AB%99%E8%B5%84%E6%BA%90"><span class="toc-number">5.</span> <span class="toc-text">5.上传网站资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E9%85%8D%E7%BD%AE-nginx"><span class="toc-number">6.</span> <span class="toc-text">6.配置 nginx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%8E%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2-java-%E9%A1%B9%E7%9B%AE"><span class="toc-number">7.</span> <span class="toc-text">7. 接口项目部署(java 项目)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Node-%E4%BD%9C%E4%B8%BA%E6%9C%8D%E5%8A%A1%E7%AB%AF%EF%BC%9A"><span class="toc-number">8.</span> <span class="toc-text">Node 作为服务端：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E5%AE%89%E8%A3%85-Node-js-%EF%BC%88%E5%90%8E%E7%AB%AF%E6%98%AF-Node-%E8%BF%90%E8%A1%8C%E7%9A%84%EF%BC%89"><span class="toc-number">9.</span> <span class="toc-text">8.安装 Node.js （后端是 Node 运行的）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-Node-%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E6%AD%A5%E9%AA%A4%EF%BC%88Node-%E9%A1%B9%E7%9B%AE%EF%BC%89"><span class="toc-number">10.</span> <span class="toc-text">9.Node 项目部署步骤（Node 项目）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="toc-number"></span> <span class="toc-text">部署过程遇到的问题：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-linux-%E4%B8%8A%E9%83%A8%E7%BD%B2-springboot-%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8%E6%88%90%E5%8A%9F%E6%9C%AC%E5%9C%B0%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE"><span class="toc-number">1.</span> <span class="toc-text">1.linux 上部署 springboot 项目启动成功本地无法访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-linux-%E6%9C%8D%E5%8A%A1%E5%99%A8-mysql-%E5%8C%BA%E5%88%86%E8%A1%A8%E5%90%8D%E5%A4%A7%E5%B0%8F%E5%86%99%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">2.linux 服务器 mysql 区分表名大小写解决办法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8D%B8%E8%BD%BD-mysql"><span class="toc-number">3.</span> <span class="toc-text">3.卸载 mysql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-nginx-%E8%A7%A3%E5%86%B3%E5%89%8D%E7%AB%AF%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">4.nginx 解决前端跨域问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F-%E8%AE%BE%E7%BD%AE-proxy-pass-%E6%9C%89%E5%8F%AF%E8%83%BD%E8%AE%BF%E9%97%AE%E5%BD%93%E5%89%8D%E5%9F%9F%E5%90%8D%E9%A1%B5%E9%9D%A2%E4%BC%9A%E6%8F%90%E7%A4%BA-502BadGate"><span class="toc-number">5.</span> <span class="toc-text">注意: 设置 proxy_pass 有可能访问当前域名页面会提示 502BadGate</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%EF%BC%9A"><span class="toc-number">5.1.</span> <span class="toc-text">解决办法：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%EF%BC%9A"><span class="toc-number"></span> <span class="toc-text">其他：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Linux-%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">1.Linux 相关命令：</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By AQIANG</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Good Good Study! Day Day Up!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/wangq1231/js/utils.js"></script><script src="/wangq1231/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/wangq1231/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'yXM3gtelH8EjtjRBXAmIUPQi-gzGzoHsz',
+      appKey: 'HxvCO70emovygj1QGBkdMLGg',
+      placeholder: '有什么问题都欢迎留言噢，会看到的...',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="6816212515" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="list" data-preload="none" data-listmaxheight="200px" data-autoplay="true" muted></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

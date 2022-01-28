@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .img-wrap {
+      width: 400px;
+      height: 260px;
+      position: relative;
+    }
+
+    .img-wrap img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%
+    }
+
+    .pic1 {
+      opacity: 1;
+      animation: banner 6s 0s linear infinite;
+    }
+
+    .pic2 {
+      animation: banner 6s -2s linear infinite;
+    }
+
+    .pic3 {
+      animation: banner 6s -4s linear infinite;
+    }
+
+    @keyframes banner {
+      0% {
+        opacity: 1;
+      }
+
+      16.67% {
+        opacity: 0.5;
+      }
+
+      33.34% {
+        opacity: 0;
+      }
+
+      50% {
+        opacity: 0;
+      }
+
+      66.67% {
+        opacity: 0;
+      }
+
+      83.34% {
+        opacity: 0.5;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .triangle {
+      width: 100px;
+      height: 100px;
+      box-sizing: border-box;
+      border-top: 50px solid transparent;
+      border-left: 50px solid transparent;
+      border-right: 50px solid transparent;
+      border-bottom: 50px solid red;
+    }
+  </style>
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="img-wrap">
+    <img src="https://i.loli.net/2021/03/23/yCBzYk19EMupotc.jpg" alt="" class="pic1" />
+    <img src="https://i.loli.net/2021/05/24/W9adkxgizuwVTJZ.jpg" alt="" class="pic2" />
+    <img src="https://i.loli.net/2021/03/23/3zKpS9DUsJdWr8P.jpg" alt="" class="pic3" />
+  </div>
+
+  <div class="triangle"></div>
+
+</body>
+
+</html>

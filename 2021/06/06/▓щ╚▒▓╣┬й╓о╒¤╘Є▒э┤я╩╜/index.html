@@ -1,0 +1,475 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>查缺补漏之正则表达式 | 技术随笔WQ</title><meta name="keywords" content="js"><meta name="author" content="AQIANG,1550791330@qq.com"><meta name="copyright" content="AQIANG"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="正则表达式的相关使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="查缺补漏之正则表达式">
+<meta property="og:url" content="https://wangq1231.gitee.io/2021/06/06/%E2%96%93%D1%89%E2%95%9A%E2%96%92%E2%96%93%E2%95%A3%E2%94%AC%D0%B9%E2%95%93%D0%BE%E2%95%92%C2%A4%E2%95%98%D0%84%E2%96%92%D1%8D%E2%94%A4%D1%8F%E2%95%A9%E2%95%9C/index.html">
+<meta property="og:site_name" content="技术随笔WQ">
+<meta property="og:description" content="正则表达式的相关使用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/06/07/o9dUjL4esKDcF7k.jpg">
+<meta property="article:published_time" content="2021-06-06T12:18:08.000Z">
+<meta property="article:modified_time" content="2022-01-27T10:36:49.517Z">
+<meta property="article:author" content="AQIANG">
+<meta property="article:tag" content="js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/06/07/o9dUjL4esKDcF7k.jpg"><link rel="shortcut icon" href="/wangq1231/img/favicon.jpg"><link rel="canonical" href="https://wangq1231.gitee.io/2021/06/06/%E2%96%93%D1%89%E2%95%9A%E2%96%92%E2%96%93%E2%95%A3%E2%94%AC%D0%B9%E2%95%93%D0%BE%E2%95%92%C2%A4%E2%95%98%D0%84%E2%96%92%D1%8D%E2%94%A4%D1%8F%E2%95%A9%E2%95%9C/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/wangq1231/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/wangq1231/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-27 18:36:49'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><link rel="stylesheet" href="APlayer.min.css"><div id="aplayer"></div><script src="https://cdn.jsdelivr.net/gh/radium-bit/res@master/live2d/autoload.js" async></script><script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js" async></script><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"></link><link rel="stylesheet" href="//at.alicdn.com/t/font_2443718_x22y5l11sv.css"></link><meta name="generator" content="Hexo 5.4.1"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="/wangq1231/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/wangq1231/archives/"><div class="headline">文章</div><div class="length-num">22</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/wangq1231/tags/"><div class="headline">标签</div><div class="length-num">13</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/wangq1231/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/wangq1231/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/wangq1231/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/wangq1231/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/wangq1231/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/wangq1231/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 更多</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/wangq1231/photo/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li><li><a class="site-page" href="/wangq1231/music/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/wangq1231/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2021/06/07/o9dUjL4esKDcF7k.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/wangq1231/">技术随笔WQ</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/wangq1231/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/wangq1231/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/wangq1231/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/wangq1231/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/wangq1231/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 更多</span><i class="fas fa-chevron-down expand hide"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/wangq1231/photo/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li><li><a class="site-page" href="/wangq1231/music/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/wangq1231/about/"><i class="fa-fw fas fa-user-circle"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">查缺补漏之正则表达式</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-06-06T12:18:08.000Z" title="发表于 2021-06-06 20:18:08">2021-06-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-01-27T10:36:49.517Z" title="更新于 2022-01-27 18:36:49">2022-01-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/wangq1231/categories/%E6%9F%A5%E7%BC%BA%E8%A1%A5%E6%BC%8F/">查缺补漏</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>首先要明白正则表达式可以干什么？</p>
+<p>正则表达式是用于匹配字符串中字符组合的模式。简单的说就是比如你想知道一串数字是否是正确的手机号。就需要用到正则表达式。由于之前一直对正则表达式的知识比较薄弱，所以在此进行查缺补漏</p>
+</blockquote>
+<h3 id="一、创建一个正则表达式"><a href="#一、创建一个正则表达式" class="headerlink" title="一、创建一个正则表达式"></a>一、创建一个正则表达式</h3><p>创建一个正则表达式的方法有两种：</p>
+<h4 id="字面量创建；"><a href="#字面量创建；" class="headerlink" title="字面量创建；"></a>字面量创建；</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> regTest = <span class="regexp">/[a-z]/</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="使用构造函数创建"><a href="#使用构造函数创建" class="headerlink" title="使用构造函数创建"></a>使用构造函数创建</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> regTest = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">&#x27;[a-z]&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这里就使用第一种简单字面量的方式来熟悉正则表达式相关知识。正则表达式的匹配方法有很多例如 exex()、test()、match()等。这里主要熟悉正则的编写，方法先不做介绍。能看懂下面的匹配方法就行</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> helloReg = <span class="regexp">/Hello/</span></span><br><span class="line"><span class="keyword">const</span> str = <span class="string">&#x27;Hello World&#x27;</span></span><br><span class="line">helloReg.test(str) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="二、正则表达式修饰符"><a href="#二、正则表达式修饰符" class="headerlink" title="二、正则表达式修饰符"></a>二、正则表达式修饰符</h3><p>修饰符是在字面量的结尾加上的参数。或是用构造函数创建的对象第二个参数。如:<code>new RegExp(&#39;[a-z]&#39;, i);</code></p>
+<table>
+<thead>
+<tr>
+<th align="left">修饰符</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">i</td>
+<td align="left">执行对大小写不敏感的匹配。</td>
+</tr>
+<tr>
+<td align="left">g</td>
+<td align="left">执行全局匹配（查找所有匹配而非在找到第一个匹配后停止）。</td>
+</tr>
+<tr>
+<td align="left">m</td>
+<td align="left">执行多行匹配。</td>
+</tr>
+</tbody></table>
+<h3 id="三、正则表达式中的特殊字符"><a href="#三、正则表达式中的特殊字符" class="headerlink" title="三、正则表达式中的特殊字符"></a>三、正则表达式中的特殊字符</h3><h4 id="断言类"><a href="#断言类" class="headerlink" title="断言类"></a>断言类</h4><p>表示一个匹配在某些条件下发生。断言包含先行断言、后行断言和条件表达式。</p>
+<table>
+<thead>
+<tr>
+<th>特殊字符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>^</td>
+<td>匹配输入的开头。（或对后面的校验取反）</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配输入的结束。</td>
+</tr>
+</tbody></table>
+<h4 id="字符类"><a href="#字符类" class="headerlink" title="字符类"></a>字符类</h4><p>区分不同类型的字符，例如区分字母和数字。</p>
+<table>
+<thead>
+<tr>
+<th>特殊字符</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>.</td>
+<td align="center">默认匹配除换行符之外的任何单个字符。例如，<code>/.n/</code> 将会匹配 “nay, an apple is on the tree” 中的 ‘an’ 和 ‘on’，但是不会匹配 ‘nay’。</td>
+</tr>
+<tr>
+<td>\b</td>
+<td align="center">匹配一个单词的边界，即匹配两边中的一边没有其他元素或者空格。例如：/123\b/匹配’123 456’中的’123’</td>
+</tr>
+<tr>
+<td>\B</td>
+<td align="center">匹配非单词边界，例如<code>/\Bpple/</code>匹配”apple”中的“pple”</td>
+</tr>
+<tr>
+<td>\d</td>
+<td align="center">匹配任何数字(阿拉伯数字)。 相当于 <code>[0-9]</code>. 例如, <code>/\d/</code> 或 <code>/[0-9]/</code> 匹配 “B2is the suite number”中的“2”。</td>
+</tr>
+<tr>
+<td>\D</td>
+<td align="center">匹配任何非数字(阿拉伯数字)的字符。相当于<code>[^0-9]</code>. 例如, <code>/\D/</code> or <code>/[^0-9]/</code> 在 “B2 is the suite number” 中 匹配 “B”.</td>
+</tr>
+<tr>
+<td>\n</td>
+<td align="center">匹配换行符。例如<code>/\n/g</code>匹配”I am a boy. \n “中的换行符</td>
+</tr>
+<tr>
+<td>\w</td>
+<td align="center">匹配基本拉丁字母中的任何字母数字字符，包括下划线。相当于 <code>[A-Za-z0-9_]</code>.</td>
+</tr>
+<tr>
+<td>\W</td>
+<td align="center">匹配任何不是来自基本拉丁字母的单词字符。相当于 <code>[^A-Za-z0-9_]</code>.</td>
+</tr>
+<tr>
+<td>\s</td>
+<td align="center">匹配空白字符。例如<code>/\s/g</code>匹配”I am a boy”中的所有空格</td>
+</tr>
+<tr>
+<td>\S</td>
+<td align="center">匹配非空白字符。例如<code>/\S/g</code>匹配”I am a boy“中的所有字母</td>
+</tr>
+</tbody></table>
+<h4 id="量词类"><a href="#量词类" class="headerlink" title="量词类"></a>量词类</h4><p>量词表示要匹配的字符或表达式的数量。</p>
+<table>
+<thead>
+<tr>
+<th>特殊字符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>x*</td>
+<td>将前面的项“x”匹配 0 次或更多次。等价于 <code>&#123;0,&#125;</code>例如/bo*/匹配“A ghost booooed”中的“boooo”</td>
+</tr>
+<tr>
+<td>x+</td>
+<td>将前一项“x”匹配 1 次或更多次。等价于<code>&#123;1,&#125;</code>。例如，/a+/匹配“candy”中的“a”和“caaaaaaandy”中的“a”。</td>
+</tr>
+<tr>
+<td><em>x</em>?</td>
+<td>将前面的项“x”匹配 0 或 1 次。等价于 <code>&#123;0,1&#125;</code>。</td>
+</tr>
+<tr>
+<td><em>x</em>{<em>n</em>}</td>
+<td>其中“n”是一个正整数，与前一项“x”的 n 次匹配。例如，<code>/a&#123;2&#125;/ </code>不匹配“candy”中的“a”，但它匹配“caandy”中的所有“a”，以及“caaandy”中的前两个“a”。</td>
+</tr>
+<tr>
+<td><em>x</em>{<em>n</em>,}</td>
+<td>其中，“n”是一个正整数，与前一项“x”至少匹配“n”次。例如，<code>/a&#123;2，&#125;/</code>不匹配“candy”中的“a”，但匹配“caandy”和“caaaaaaandy”中的所有 a。</td>
+</tr>
+<tr>
+<td><em>x</em>{<em>n</em>,<em>m</em>}</td>
+<td>其中，“n”是 0 或一个正整数，“m”是一个正整数，且 m &gt; n 至少与前一项“x”匹配，最多与“m”匹配。</td>
+</tr>
+<tr>
+<td>?=n</td>
+<td>匹配任何其后紧接指定字符串 n 的字符串。例如<code>/is(?= all)/g </code>匹配 “There is all” 中的 “is all”</td>
+</tr>
+<tr>
+<td>?!n</td>
+<td>匹配任何其后没有紧接指定字符串 n 的字符串。例如<code>/is(?! all)/gi </code>匹配 “Is there all?” 中的 “Is“</td>
+</tr>
+</tbody></table>
+<h4 id="括号类"><a href="#括号类" class="headerlink" title="括号类"></a>括号类</h4><table>
+<thead>
+<tr>
+<th>括号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>()</td>
+<td>小括号用于对字符或元字符进行分组以及表示可选择性。如(A\d){1,3}和(red|green)</td>
+</tr>
+<tr>
+<td>[]</td>
+<td>方括号用于查找某个范围内的字符。例如<code>[0-9]、[a-z]、[A-D]</code></td>
+</tr>
+<tr>
+<td>{}</td>
+<td>大括号用于标记限定符表达式的开始。如<code>n&#123;1,9&#125;</code>匹配 X 至 Y 个 n 的序列的字符串。</td>
+</tr>
+</tbody></table>
+<h3 id="四、实现几个常用的正则表达式"><a href="#四、实现几个常用的正则表达式" class="headerlink" title="四、实现几个常用的正则表达式"></a>四、实现几个常用的正则表达式</h3><h4 id="手机号"><a href="#手机号" class="headerlink" title="手机号"></a>手机号</h4><p>手机号的校验分为以下几个部分：</p>
+<p>①11 位数字，不能多也不能少；得到如下<code>/\d&#123;11&#125;/</code></p>
+<p>② 第一位数字必须为 1，第二位为 3，4，5，6，7，8，9 中的一个；得到</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^<span class="number">1</span>[<span class="number">3</span>-<span class="number">9</span>]&#123;<span class="number">1</span>&#125;\d&#123;<span class="number">9</span>&#125;$/</span><br></pre></td></tr></table></figure>
+
+<p>③ 注意不要忘了用上<code>^</code>匹配开始和<code>$</code>匹配结尾。不然超过 11 位的也会被校验成功</p>
+<h4 id="身份证号"><a href="#身份证号" class="headerlink" title="身份证号"></a>身份证号</h4><p>身份证号的校验分为以下几个部分：</p>
+<p>① 地区的前两位为省级；第一位为 1-9，第二位为 0-9；三四位为市级，五六位为县级。得到<code>[1-9]&#123;1&#125;\d&#123;5&#125;</code></p>
+<p>② 出生年月日一共 8 位；年份从 18XX 开始，到目前 20XX(看到网上很多是校验到 3XXX，这里以我个人的理解先校验到 20XX)；得到如下<code>(18|19|20)\d&#123;2&#125;</code>。</p>
+<p>月份 01~12；<code>((0[1-9])|(10|11|12))</code>。</p>
+<p>日期 01~31；<code>((0[1-9])|1\d&#123;1&#125;|2\d&#123;1&#125;|3[01])</code>。</p>
+<p>③ 顺序码；<code>\d&#123;3&#125;</code>，校验码<code>(\d|X|x)</code></p>
+<p>④ 最后讲上面所有的检验结合得到如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^[<span class="number">1</span>-<span class="number">9</span>]&#123;<span class="number">1</span>&#125;\d&#123;<span class="number">5</span>&#125;(<span class="number">18</span>|<span class="number">19</span>|<span class="number">20</span>)\d&#123;<span class="number">2</span>&#125;((<span class="number">0</span>[<span class="number">1</span>-<span class="number">9</span>])|(<span class="number">10</span>|<span class="number">11</span>|<span class="number">12</span>))((<span class="number">0</span>[<span class="number">1</span>-<span class="number">9</span>])|<span class="number">1</span>\d&#123;<span class="number">1</span>&#125;|<span class="number">2</span>\d&#123;<span class="number">1</span>&#125;|<span class="number">3</span>[<span class="number">01</span>])\d&#123;<span class="number">3</span>&#125;(\d|X|x)$/</span><br></pre></td></tr></table></figure>
+
+<p>当然光靠正则的校验不够完善，比如 2 月份只有 28 天的情况，或者 29 天的情况。这里没有做到控制。更完善的校验需要编写一个方法来实现。</p>
+<h4 id="邮箱"><a href="#邮箱" class="headerlink" title="邮箱"></a>邮箱</h4><p>邮箱的校验分为以下几个部分：</p>
+<p>① 只允许英文字母、数字、下划线、英文句号、以及中划线；<code>([a-zA-Z0-9._-])+</code></p>
+<p>②@符号；<code>@</code></p>
+<p>③ 域名：一般域名的规律为“[N 级域名.][三级域名.]二级域名.顶级域名”，比如“ qq.com ”、“ <a target="_blank" rel="noopener" href="http://www.qq.com/">www.qq.com</a> ”、“ mp.weixin.qq.com ”、“ 12-34.com.cn ”，分析可得域名类似“ <code>**</code> <code>.**</code> <code>.**</code> <code>.**</code> ”组成。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`**`</span> 可表示为：([a-zA-Z0-9_-])+</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`.**`</span> 可表示为：(.[a-zA-Z0-9_-]&#123;<span class="number">2</span>,<span class="number">3</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`**.**.**.**`</span> 得到：([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]&#123;<span class="number">2</span>,<span class="number">3</span>&#125;))&#123;<span class="number">1</span>,<span class="number">3</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>④ 讲上述上个结合得到：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/^([a-zA-Z0-<span class="number">9.</span>_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]&#123;<span class="number">2</span>,<span class="number">3</span>&#125;))&#123;<span class="number">1</span>,<span class="number">3</span>&#125;$/</span><br><span class="line"><span class="comment">// 根据特殊字符 \w 相当于 `[A-Za-z0-9_]`。于是可以用以下正则代替上行</span></span><br><span class="line"><span class="regexp">/^[\w.-]+@[\w-]+(.[\w-]&#123;2,3&#125;)&#123;1,3&#125;$/</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="强密码-必须包含大小写字母和数字的组合，长度在-8-16-之间"><a href="#强密码-必须包含大小写字母和数字的组合，长度在-8-16-之间" class="headerlink" title="强密码(必须包含大小写字母和数字的组合，长度在 8-16 之间)"></a>强密码(必须包含大小写字母和数字的组合，长度在 8-16 之间)</h4><p>强密码校验分为以下几个部分：</p>
+<p>① 长度 8-16 位{8,16}</p>
+<p>② 包含大小写字母和数字[a-zA-Z0-9]{8,16}</p>
+<p>③ 确保同时含有字母和数字？</p>
+<p>这里使用<code>(?=.*\d)(?=.*[a-z])(?=.*[A-Z])</code> 来匹配当前式子同时含有大小写字母和数字。其中 <code> (?=)</code> 是用来预测后续的内容与当前表达式匹配。<strong>参见第三点的量词类倒数第二个</strong>。预测先行不占用字符，即发生匹配后，下一匹配的搜索紧随上一匹配之后，而不是在组成预测先行的字符后。这里使用了三个预测先行<code>(?=)(?=)(?=)</code>也就是说需要同时满足三个匹配条件。</p>
+<p>④ 最终得出结果:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-<span class="number">9</span>]&#123;<span class="number">8</span>,<span class="number">16</span>&#125;/</span><br></pre></td></tr></table></figure>
+
+<h3 id="更多内容待续……"><a href="#更多内容待续……" class="headerlink" title="更多内容待续……"></a>更多内容待续……</h3></article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/wangq1231/tags/js/">js</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/06/07/o9dUjL4esKDcF7k.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/wangq1231/img/weixin.jpg" target="_blank"><img class="post-qr-code-img" data-lazy-src="/wangq1231/img/weixin.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/wangq1231/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" data-lazy-src="/wangq1231/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/wangq1231/2021/06/19/%E2%96%93%D1%89%E2%95%9A%E2%96%92%E2%96%93%E2%95%A3%E2%94%AC%D0%B9%E2%95%93%D0%BEasync%20await/"><img class="prev-cover" data-lazy-src="https://i.loli.net/2021/06/05/DzTUKJSZAE8rqPG.jpg" onerror="onerror=null;src='/wangq1231/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">查缺补漏之async await</div></div></a></div><div class="next-post pull-right"><a href="/wangq1231/2021/06/05/JS%E2%95%A2%E2%94%B4%E2%95%9A%D0%B1%E2%95%99%E2%94%9C%E2%95%97%D0%B7%E2%95%90%D0%B8%E2%95%A3%C2%A4%E2%94%9C%E2%84%96%E2%94%B4%D1%8E%E2%95%A8%E2%95%A8%E2%95%A9%D1%84%E2%95%9A%D1%8B%E2%95%A1%E2%94%80%E2%95%A8%E2%94%BC%E2%95%A7%D0%B2/"><img class="next-cover" data-lazy-src="https://i.loli.net/2021/06/05/DzTUKJSZAE8rqPG.jpg" onerror="onerror=null;src='/wangq1231/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">JS读取用户命令行的输入</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/wangq1231/2022/01/02/JS╕ў╜°╓╞╓о╝ф╡─╫к╗╗/" title="JS各进制之间的转换"><img class="cover" data-lazy-src="https://i.loli.net/2021/06/05/DzTUKJSZAE8rqPG.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-02</div><div class="title">JS各进制之间的转换</div></div></a></div><div><a href="/wangq1231/2021/06/05/JS╢┴╚б╙├╗з═и╣¤├№┴ю╨╨╩ф╚ы╡─╨┼╧в/" title="JS读取用户命令行的输入"><img class="cover" data-lazy-src="https://i.loli.net/2021/06/05/DzTUKJSZAE8rqPG.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-05</div><div class="title">JS读取用户命令行的输入</div></div></a></div><div><a href="/wangq1231/2021/06/22/JS╩¤╛▌╜с╣╣╓оMap/" title="JS中Map和Object的对比"><img class="cover" data-lazy-src="/wangq1231/img/article_default.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-22</div><div class="title">JS中Map和Object的对比</div></div></a></div><div><a href="/wangq1231/2021/11/13/eventEmitter╝Є╡е╩╡╧╓/" title="EventEmitter简单实现"><img class="cover" data-lazy-src="https://i.loli.net/2021/11/13/uDMNwbaiqszPBGm.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-13</div><div class="title">EventEmitter简单实现</div></div></a></div><div><a href="/wangq1231/2021/02/20/vue3-╨┬╠╪╨╘бкбкбк╘┌css╓╨╩╣╙├js▒ф┴┐/" title="vue3 新特性——在css中使用js变量"><img class="cover" data-lazy-src="/wangq1231/img/article_default.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-20</div><div class="title">vue3 新特性——在css中使用js变量</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">一、创建一个正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E9%9D%A2%E9%87%8F%E5%88%9B%E5%BB%BA%EF%BC%9B"><span class="toc-number">1.1.</span> <span class="toc-text">字面量创建；</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%88%9B%E5%BB%BA"><span class="toc-number">1.2.</span> <span class="toc-text">使用构造函数创建</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-number">2.</span> <span class="toc-text">二、正则表达式修饰符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6"><span class="toc-number">3.</span> <span class="toc-text">三、正则表达式中的特殊字符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%AD%E8%A8%80%E7%B1%BB"><span class="toc-number">3.1.</span> <span class="toc-text">断言类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E7%B1%BB"><span class="toc-number">3.2.</span> <span class="toc-text">字符类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8F%E8%AF%8D%E7%B1%BB"><span class="toc-number">3.3.</span> <span class="toc-text">量词类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8B%AC%E5%8F%B7%E7%B1%BB"><span class="toc-number">3.4.</span> <span class="toc-text">括号类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AE%9E%E7%8E%B0%E5%87%A0%E4%B8%AA%E5%B8%B8%E7%94%A8%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">四、实现几个常用的正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%8B%E6%9C%BA%E5%8F%B7"><span class="toc-number">4.1.</span> <span class="toc-text">手机号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BA%AB%E4%BB%BD%E8%AF%81%E5%8F%B7"><span class="toc-number">4.2.</span> <span class="toc-text">身份证号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%82%AE%E7%AE%B1"><span class="toc-number">4.3.</span> <span class="toc-text">邮箱</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%BA%E5%AF%86%E7%A0%81-%E5%BF%85%E9%A1%BB%E5%8C%85%E5%90%AB%E5%A4%A7%E5%B0%8F%E5%86%99%E5%AD%97%E6%AF%8D%E5%92%8C%E6%95%B0%E5%AD%97%E7%9A%84%E7%BB%84%E5%90%88%EF%BC%8C%E9%95%BF%E5%BA%A6%E5%9C%A8-8-16-%E4%B9%8B%E9%97%B4"><span class="toc-number">4.4.</span> <span class="toc-text">强密码(必须包含大小写字母和数字的组合，长度在 8-16 之间)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E5%86%85%E5%AE%B9%E5%BE%85%E7%BB%AD%E2%80%A6%E2%80%A6"><span class="toc-number">5.</span> <span class="toc-text">更多内容待续……</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By AQIANG</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Good Good Study! Day Day Up!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/wangq1231/js/utils.js"></script><script src="/wangq1231/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/wangq1231/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'yXM3gtelH8EjtjRBXAmIUPQi-gzGzoHsz',
+      appKey: 'HxvCO70emovygj1QGBkdMLGg',
+      placeholder: '有什么问题都欢迎留言噢，会看到的...',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="6816212515" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="list" data-preload="none" data-listmaxheight="200px" data-autoplay="true" muted></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
